@@ -39,6 +39,7 @@ export default {
         return {
             tabs: ["Integrations", "Modules", "Systems"],
             selectedIndex: 0,
+            content: [],
             integrations: [],
             modules: [],
             systems: []

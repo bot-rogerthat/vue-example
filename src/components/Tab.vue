@@ -12,7 +12,7 @@
 
 <script>
     export default {
-        props: ['tab', 'index', 'selectedIndex'],
+        props: ["tab", "index", "selectedIndex"],
         name: "Tab"
     }
 </script>

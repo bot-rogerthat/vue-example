@@ -13,14 +13,14 @@
 <script>
     import Tab from '@/components/Tab';
     export default {
-        props: ['tabs', 'selectedIndex'],
+        props: ["tabs", "selectedIndex"],
         name: "Tabs",
         components: {
             Tab
         },
         methods: {
             selectTab(index){
-                this.$emit('selected', index);
+                this.$emit("selected", index);
             }
         }
     }
