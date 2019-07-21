@@ -5,7 +5,7 @@
         <Tabs
                 :tabs="tabs"
                 :selectedIndex="selectedIndex"
-                @select-tab="selectTab"
+                @selected="selectTab"
         />
         <div class="list-group" v-if="selectedIndex === 0">
             <a v-for="integration in integrations"

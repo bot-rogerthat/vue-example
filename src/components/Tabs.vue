@@ -5,7 +5,7 @@
                 :tab="tab"
                 :index="index"
                 :selectedIndex="selectedIndex"
-                @select-tab="selectTab"
+                @selected="selectTab"
         />
     </ul>
 </template>
@@ -20,7 +20,7 @@
         },
         methods: {
             selectTab(index){
-                this.$emit('select-tab', index);
+                this.$emit('selected', index);
             }
         }
     }

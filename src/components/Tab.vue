@@ -2,7 +2,7 @@
     <li class="nav-item">
         <a
                 :class="{active : index === selectedIndex}"
-                @click="$emit('select-tab', index)"
+                @click="$emit('selected', index)"
                 class="nav-link"
                 href="#">
             {{tab}}
