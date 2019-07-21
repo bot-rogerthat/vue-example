@@ -7,39 +7,22 @@
                 :selectedIndex="selectedIndex"
                 @selected="selectTab"
         />
-        <div class="list-group" v-if="selectedIndex === 0">
-            <a v-for="integration in integrations"
-               href="#"
-               class="list-group-item list-group-item-action">
-               {{integration.title}}
-            </a>
-        </div>
-        <div class="list-group" v-if="selectedIndex === 1">
-            <a v-for="module in modules"
-               href="#"
-               class="list-group-item list-group-item-action">
-                {{module.name}}
-            </a>
-        </div>
-        <div class="list-group" v-if="selectedIndex === 2">
-            <a v-for="system in systems"
-               href="#"
-               class="list-group-item list-group-item-action">
-                {{system.title}}
-            </a>
-        </div>
+        <List
+                :list="currentList"
+        />
     </div>
 </template>
 
 <script>
 import Tabs from '@/components/Tabs';
+import List from '@/components/List';
 export default {
     name: 'app',
     data(){
         return {
             tabs: ["Integrations", "Modules", "Systems"],
             selectedIndex: 0,
-            content: [],
+            currentList: [],
             integrations: [],
             modules: [],
             systems: []
@@ -48,13 +31,21 @@ export default {
     methods: {
         selectTab(index) {
             this.selectedIndex = index
+            if (this.selectedIndex === 0){
+                this.currentList = this.integrations
+            } else if (this.selectedIndex === 1){
+                this.currentList = this.modules
+            } else {
+                this.currentList = this.systems
+            }
         }
     },
     created() {
         this.$resource('todos').get().then(response => {
             this.integrations = response.body
+            this.currentList = this.integrations
         });
-        this.$resource('comments').get().then(response => {
+        this.$resource('photos').get().then(response => {
             this.modules = response.body
         });
         this.$resource('albums').get().then(response => {
@@ -62,7 +53,9 @@ export default {
         });
 
     },
-    components:  { Tabs }
+    components: {
+        Tabs, List
+    }
 }
 </script>
 

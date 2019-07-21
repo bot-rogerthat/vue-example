@@ -5,7 +5,7 @@
                 :tab="tab"
                 :index="index"
                 :selectedIndex="selectedIndex"
-                @selected="selectTab"
+                @selected="$emit('selected', index)"
         />
     </ul>
 </template>
@@ -17,11 +17,6 @@
         name: "Tabs",
         components: {
             Tab
-        },
-        methods: {
-            selectTab(index){
-                this.$emit("selected", index);
-            }
         }
     }
 </script>

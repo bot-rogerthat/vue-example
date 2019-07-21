@@ -1,16 +1,16 @@
 <template>
-    <div class="list-group" v-if="selectedIndex === 0">
-        <a v-for="integration in integrations"
+    <div class="list-group">
+        <a v-for="elem in list"
            href="#"
            class="list-group-item list-group-item-action">
-            {{integration.title}}
+            {{elem.title}}
         </a>
     </div>
 </template>
 
 <script>
     export default {
-        props: [],
+        props: ["list"],
         name: "List"
     }
 </script>
