@@ -8,24 +8,24 @@
                 @select-tab="selectTab"
         />
         <div class="list-group" v-if="selectedIndex === 0">
-            <a v-for="integration in getIntegrations()"
+            <a v-for="integration in integrations"
                href="#"
                class="list-group-item list-group-item-action">
                {{integration.title}}
             </a>
         </div>
         <div class="list-group" v-if="selectedIndex === 1">
-            <a v-for="integration in getModules()"
+            <a v-for="module in modules"
                href="#"
                class="list-group-item list-group-item-action">
-                {{integration.name}}
+                {{module.name}}
             </a>
         </div>
         <div class="list-group" v-if="selectedIndex === 2">
-            <a v-for="integration in getSystems()"
+            <a v-for="system in systems"
                href="#"
                class="list-group-item list-group-item-action">
-                {{integration.title}}
+                {{system.title}}
             </a>
         </div>
     </div>
@@ -33,7 +33,6 @@
 
 <script>
 import Tabs from '@/components/Tabs';
-import axios from 'axios';
 export default {
     name: 'app',
     data(){
@@ -55,23 +54,25 @@ export default {
             this.selectedIndex = index
         },
         getIntegrations(){
-            axios.get(this.url.integrations).then(response => {
-                this.integrations = response.data;
+            this.$http.get(this.url.integrations).then(response => {
+                this.integrations = response.body;
             });
-            return this.integrations;
         },
         getModules(){
-            axios.get(this.url.modules).then(response => {
-                this.modules = response.data;
+            this.$http.get(this.url.modules).then(response => {
+                this.modules = response.body;
             });
-            return this.modules;
         },
         getSystems(){
-            axios.get(this.url.systems).then(response => {
-                this.systems = response.data;
+            this.$http.get(this.url.systems).then(response => {
+                this.systems = response.body;
             });
-            return this.systems;
-        }
+        },
+    },
+    created() {
+        this.getIntegrations();
+        this.getModules();
+        this.getSystems();
     },
     components:  { Tabs }
 }
