@@ -4,11 +4,12 @@
         <hr>
         <Tabs
                 :tabs="tabs"
-                :selectedIndex="selectedIndex"
-                @selected="selectTab"
+                :currentTabIndex="currentTabIndex"
+                @selectedTab="selectTab"
         />
         <List
                 :list="currentList"
+                @selectedRow="selectRow"
         />
     </div>
 </template>
@@ -21,7 +22,7 @@ export default {
     data(){
         return {
             tabs: ["Integrations", "Modules", "Systems"],
-            selectedIndex: 0,
+            currentTabIndex: 0,
             currentList: [],
             integrations: [],
             modules: [],
@@ -30,14 +31,17 @@ export default {
     },
     methods: {
         selectTab(index) {
-            this.selectedIndex = index
-            if (this.selectedIndex === 0){
+            this.currentTabIndex = index
+            if (this.currentTabIndex === 0){
                 this.currentList = this.integrations
-            } else if (this.selectedIndex === 1){
+            } else if (this.currentTabIndex === 1){
                 this.currentList = this.modules
             } else {
                 this.currentList = this.systems
             }
+        },
+        selectRow(index){
+            console.log(index)
         }
     },
     created() {

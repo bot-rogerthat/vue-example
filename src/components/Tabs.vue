@@ -4,8 +4,8 @@
                 v-for="(tab, index) of tabs"
                 :tab="tab"
                 :index="index"
-                :selectedIndex="selectedIndex"
-                @selected="$emit('selected', index)"
+                :currentTabIndex="currentTabIndex"
+                @selectedTab="$emit('selectedTab', index)"
         />
     </ul>
 </template>
@@ -13,7 +13,7 @@
 <script>
     import Tab from '@/components/Tab';
     export default {
-        props: ["tabs", "selectedIndex"],
+        props: ["tabs", "currentTabIndex"],
         name: "Tabs",
         components: {
             Tab

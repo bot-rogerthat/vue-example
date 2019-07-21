@@ -1,8 +1,8 @@
 <template>
     <li class="nav-item">
         <a
-                :class="{active : index === selectedIndex}"
-                @click="$emit('selected', index)"
+                :class="{active : index === currentTabIndex}"
+                @click="$emit('selectedTab', index)"
                 class="nav-link"
                 href="#">
             {{tab}}
@@ -12,7 +12,7 @@
 
 <script>
     export default {
-        props: ["tab", "index", "selectedIndex"],
+        props: ["tab", "index", "currentTabIndex"],
         name: "Tab"
     }
 </script>
