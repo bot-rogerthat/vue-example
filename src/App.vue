@@ -41,38 +41,25 @@ export default {
             selectedIndex: 0,
             integrations: [],
             modules: [],
-            systems: [],
-            url: {
-                integrations: "https://jsonplaceholder.typicode.com/todos",
-                modules: "https://jsonplaceholder.typicode.com/comments",
-                systems: "https://jsonplaceholder.typicode.com/albums"
-            }
+            systems: []
         }
     },
     methods: {
         selectTab(index) {
             this.selectedIndex = index
-        },
-        getIntegrations(){
-            this.$http.get(this.url.integrations).then(response => {
-                this.integrations = response.body;
-            });
-        },
-        getModules(){
-            this.$http.get(this.url.modules).then(response => {
-                this.modules = response.body;
-            });
-        },
-        getSystems(){
-            this.$http.get(this.url.systems).then(response => {
-                this.systems = response.body;
-            });
-        },
+        }
     },
     created() {
-        this.getIntegrations();
-        this.getModules();
-        this.getSystems();
+        this.$resource('todos').get().then(response => {
+            this.integrations = response.body
+        });
+        this.$resource('comments').get().then(response => {
+            this.modules = response.body
+        });
+        this.$resource('albums').get().then(response => {
+            this.systems = response.body
+        });
+
     },
     components:  { Tabs }
 }

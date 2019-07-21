@@ -3,6 +3,7 @@ import App from './App.vue'
 import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
+Vue.http.options.root = 'https://jsonplaceholder.typicode.com/'
 
 Vue.config.productionTip = false
 
